@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -822,6 +823,130 @@
       .tab-btn { min-width: 150px; }
       .number-btn { max-width: 100%; min-height: clamp(84px, 20vw, 110px); }
       .number-btn .big { font-size: clamp(40px, 14vw, 56px); }
+    }
+    /* Адаптация для встраивания в iframe Tilda */
+    :root { --app-height: 100dvh; }
+
+    html {
+      min-height: 100%;
+      height: auto;
+      background: var(--sky);
+    }
+
+    body {
+      min-width: 280px;
+      min-height: var(--app-height);
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: none;
+    }
+
+    .wrapper {
+      width: min(1040px, calc(100% - 18px));
+      min-height: calc(var(--app-height) - 10px);
+      height: auto;
+      transform: none;
+    }
+
+    .menu-panel,
+    .game-layout,
+    body.time-attack .game-layout {
+      height: auto;
+      min-height: calc(var(--app-height) - 126px);
+      max-height: none;
+    }
+
+    .menu-panel { overflow: visible; }
+    #setMenu .cards-panel { overflow: visible; }
+    .panel, .ladder-panel { min-height: 0; }
+    .modal-overlay { min-height: var(--app-height); overflow-y: auto; }
+    .modal { max-height: min(90dvh, 820px); overflow-y: auto; }
+
+    @media (max-width: 980px) {
+      :root { --ui-scale: 1; }
+      .game-layout {
+        height: auto;
+        min-height: calc(var(--app-height) - 116px);
+        max-height: none;
+      }
+      .ladder-panel { height: auto; max-height: none; }
+    }
+
+    @media (max-width: 700px) {
+      :root {
+        --ui-scale: 1;
+        --timer-scale: 0.72;
+        --keyboard-gap: 7px;
+        --key-height: 52px;
+        --key-font: 24px;
+        --key-action-font: 18px;
+        --answer-height: 56px;
+        --answer-font: 28px;
+      }
+
+      .wrapper {
+        width: 100%;
+        min-height: var(--app-height);
+        height: auto;
+        margin: 0;
+        padding: 4px 6px calc(72px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .subtitle-wrap { margin: 0 86px 6px; }
+      .subtitle-bricks { min-height: 36px; padding: 2px 8px; border-width: 3px; }
+      .subtitle { font-size: 15px; }
+
+      .menu-panel,
+      .game-layout,
+      body.time-attack .game-layout {
+        min-height: calc(var(--app-height) - 54px);
+        height: auto;
+        max-height: none;
+      }
+
+      .menu-panel { padding: 12px 8px 18px; justify-content: flex-start; }
+      .menu-title { font-size: clamp(22px, 7vw, 30px); }
+      .entry-grid { grid-template-columns: 1fr; }
+      .entry-card { min-height: 0; padding: 14px 12px; }
+
+      .number-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+      .number-btn { min-width: 0; min-height: clamp(74px, 24vw, 102px); padding: 10px 4px; border-width: 4px; }
+      .number-btn .big { font-size: clamp(34px, 13vw, 52px); }
+
+      .game-layout { display: block; }
+      .panel { height: auto; padding: 8px; overflow: visible; }
+      .stats { gap: 5px; margin-bottom: 7px; }
+      .stat { padding: 5px 3px; border-width: 2px; }
+      .stat .label { font-size: 9px; }
+      .stat .value { font-size: 17px; }
+      .question-box { padding: 9px 6px; margin-bottom: 7px; }
+
+      .controls { grid-template-columns: 1fr 1fr; gap: 7px; }
+      .controls input { grid-column: 1 / -1; grid-row: 1; }
+      .btn-secondary, .btn-primary { min-width: 0; }
+      .btn-sound { grid-column: 1 / -1; min-width: 0; height: 48px; }
+      .keyboard { margin-top: 5px; }
+      .ladder-panel { display: none; }
+
+      .board-floating { max-width: 94px; white-space: normal; line-height: 1.05; }
+      .brand-caption { max-width: calc(100vw - 12px); white-space: normal; }
+    }
+
+    @media (max-width: 380px) {
+      .subtitle-wrap { margin-right: 76px; margin-left: 76px; }
+      .subtitle { font-size: 13px; }
+      .sky-timer { min-width: 164px; }
+      .number-grid { gap: 5px; }
+      .number-btn { min-height: 70px; border-radius: 15px; }
+      .mode-btn { padding: 13px 8px; }
+      .mode-name { font-size: 23px; }
+    }
+
+    @media (max-height: 650px) and (min-width: 701px) {
+      .wrapper { min-height: 650px; }
+      .menu-panel, .game-layout, body.time-attack .game-layout { min-height: 540px; }
+      body { min-height: 650px; }
     }
   </style>
 </head>
